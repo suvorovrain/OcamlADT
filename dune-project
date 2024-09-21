@@ -6,21 +6,19 @@
 
 (license LGPL-3.0-or-later)
 
-(authors "FIXME Vasya Pupkin")
+(authors "Rodion Suvorov Mikhail Gavrilenko")
 
-(maintainers "FIXME Vasya Pupkin")
+(maintainers "Rodion Suvorov Mikhail Gavrilenko")
 
-(bug_reports "https://github.com/Kakadu/fp2024")
+(bug_reports "https://github.com/suvorovrain/OcamlADT")
 
-(homepage "https://github.com/Kakadu/fp2024")
+(homepage "https://github.com/suvorovrain/OcamlADT")
 
 (package
- (name Lambda) ; FIXME and regenerate .opam file using 'dune build @install'
- (synopsis "FIXME An interpreter for language")
+ (name OcamlADT) ; FIXME and regenerate .opam file using 'dune build @install'
+ (synopsis "An interpreter for Ocaml language with ADT")
  (description
-  "FIXME. A longer description, for example, which are the most interesing features being supported, etc.")
- (documentation "https://kakadu.github.io/fp2024/docs/Lambda")
- (version 0.1)
+  "An interpreter for Ocaml language with ADT.") (version 0.1)
  (depends
   dune
   angstrom
@@ -30,6 +28,6 @@
   bisect_ppx
   (odoc :with-doc)
   (ocamlformat :build)
-  ; base
+  base
   ; After adding dependencies to 'dune' files and the same dependecies here too
   ))
