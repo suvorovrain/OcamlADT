@@ -54,30 +54,30 @@ let downname str = DownName str
 type match_pattern (* TODO *)
 
 type decl_expr = 
-| EInt of int
-| EString of string
-| EBool of bool
-| EEmptyList
-| EVar of decl_name
-| ETuple of expr list
-| EFun of ?? * declaration_expr
-| EMatch of decl_expr * (match_pattern * decl_expr)
-| EIf of decl_expr * decl_expr * decl_expr (* здесь бы всунуть стэйтмент*)
-| ELet of decl_name * decl_expr (* *)
-| EBinOp of binop * decl_expr * decl_expr
+| ExpInt of int
+| ExpString of string
+| ExpBool of bool
+| ExpEmptyList
+| ExpVar of decl_name
+| ExpTuple of expr list
+| ExpFun of ?? * declaration_expr
+| ExpMatch of decl_expr * (match_pattern * decl_expr)
+| ExpIf of ?? * decl_expr * decl_expr (* describe the statement*)
+| ExpLet of decl_name * decl_expr (* *)
+| ExpBinOp of binop * decl_expr * decl_expr
 
-let eint int = EInt int
-let estring string = EString string
-let ebool bool = EBool bool
-let eemptylist = EEmptyList
-let evar var = EVar var
-let etuple declaration_expression = ETuple declaration_expression
-let efun match_pattern decl_expr = EFun (match_pattern, decl_expr)
-let ematch (* TODO *)
-let eif (* TODO *)
-let elet (* TODO *)
-let ebinop binop decl_exp decl_exp = EBinOp (binop, decl_exp, decl_exp)
+let expint int = ExpInt int
+let expstring string = ExpString string
+let expbool bool = ExpBool bool
+let expemptylist = ExpEmptyList
+let exptuple declaration_expression = ExpTuple declaration_expression
+let expfun ?? decl_expr = ExpFun (??, decl_expr)
+let expmatch decl_exp (match_pattern * decl_expr) list = ExpMatch (decl_exp, match_pattern, decl_exp)
+let expif decl_exp decl_exp = ExpIf (??, decl_exp, decl_exp) (* describe the statement*)
+let explet decl_name decl_exp = ExpLet (decl_name, decl_exp)
+let expbinop binop decl_exp decl_exp = ExpBinOp (binop, decl_exp, decl_exp)
 
+(* I guess ?? should be replaced with smth near to pattern... *)
 
 type decl_rec (* TODO *)
 type decl_type (* TODO *)
