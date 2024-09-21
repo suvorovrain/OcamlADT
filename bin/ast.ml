@@ -60,9 +60,9 @@ type decl_expr =
 | ExpEmptyList
 | ExpVar of decl_name
 | ExpTuple of expr list
-| ExpFun of ?? * declaration_expr
+| ExpFun of ??
 | ExpMatch of decl_expr * (match_pattern * decl_expr)
-| ExpIf of ?? * decl_expr * decl_expr (* describe the statement*)
+| ExpIf of decl_expr * decl_expr * decl_expr 
 | ExpLet of decl_name * decl_expr (* *)
 | ExpBinOp of binop * decl_expr * decl_expr
 
@@ -72,8 +72,8 @@ let expbool bool = ExpBool bool
 let expemptylist = ExpEmptyList
 let expvar decl_name = ExpVar (decl_name)
 let exptuple declaration_expression = ExpTuple declaration_expression
-let expfun ?? decl_expr = ExpFun (??, decl_expr)
-let expmatch decl_exp (match_pattern * decl_expr) list = ExpMatch (decl_exp, match_pattern, decl_exp)
+let expfun ??
+let expmatch decl_exp (match_pattern * decl_exp) list = ExpMatch (decl_exp, match_pattern, decl_exp)
 let expif decl_exp1 decl_exp2 decl_exp3 = ExpIf (decl_exp1, decl_exp2, decl_exp3) (* Statement is also a expression *)
 let explet decl_name decl_exp = ExpLet (decl_name, decl_exp)
 let expbinop binop decl_exp decl_exp = ExpBinOp (binop, decl_exp, decl_exp)
