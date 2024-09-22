@@ -38,9 +38,9 @@ type decl_type =
 | TString
 | TBool
 | TFun of decl_type * decl_type
-| TVar of decl_type
+| TVar of string
 | TList of decl_type
-| TTuple of decl_type * decl_type (*list of decl_type, im dumb*)
+| TTuple of decl_type list
 
 let tint = TInt
 let tstring = TString
@@ -105,10 +105,12 @@ let exptuple declaration_expression = ExpTuple declaration_expression
 let expfun ??
 let expmatch decl_exp (match_pattern * decl_exp) list = ExpMatch (decl_exp, match_pattern, decl_exp) (* Matched value, pattern, expresion after pattern match*)
 let expif decl_exp1 decl_exp2 decl_exp3 = ExpIf (decl_exp1, decl_exp2, decl_exp3) (* Statement is also a expression *)
-let explet decl_name decl_exp = ExpLet (decl_name, decl_exp)
+let explet decl_name decl_exp1 decl_exp2 = ExpLet (decl_name, decl_exp1, decl_exp2)
 let expbinop binop decl_exp decl_exp = ExpBinOp (binop, decl_exp, decl_exp)
 
 (* I guess ?? should be replaced with smth near to pattern... *)
 
 type decl_rec (* TODO *)
-type decl_type (* TODO *)
+
+(* ADT specific *)
+type type_decl = decl_name * (decl_name * decl_type) list
