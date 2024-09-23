@@ -77,6 +77,10 @@ type decl_expr =
 | ExpBinOp of binop * decl_expr * decl_expr
 [@@deriving eq, show { with_path = false }]
 
+(* type fun_body = 
+| Pfun_body of decl_expr
+| Pfun_case of  *)
+
 (* I guess ?? should be replaced with smth near to pattern... *)
 
 type decl_rec (* TODO *)
