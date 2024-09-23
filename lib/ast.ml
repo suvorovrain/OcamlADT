@@ -1,7 +1,7 @@
 type constant =
-  | Pconst_integer of int (** integer as [52] **)
-  | Pconst_char of char (** char as ['w'] **)
-  | Pconst_string of string (** string as ["Kakadu"] **)
+  | Const_integer of int (** integer as [52] **)
+  | Const_char of char (** char as ['w'] **)
+  | Const_string of string (** string as ["Kakadu"] **)
 
 type binop = 
 | Add (* + *)
@@ -18,6 +18,7 @@ type binop =
 | Gre (* > *)
 | Geq (* >= *)
 
+(**Misha we can use  https://github.com/ocaml-ppx/ppx_deriving for generating this code if we are nerds**)
 let bop_add = Add
 let bop_sub = Sub
 let bop_mul = Mul
@@ -58,17 +59,34 @@ let downname str = DownName str
 
 type match_pattern (* TODO *)
 
+type rec_flag = 
+|	Nonrecursive
+|	Recursive
+
+type value_binding = 
+  {
+    pat: pattern;
+    expr: decl_expr;
+  }
+
+type case =
+{
+  left: pattern;
+  right: decl_expr;
+}
+
 type decl_expr = 
-| ExpInt of int
-| ExpString of string
-| ExpBool of bool
+| Exp_constant of constant (** Expressions constant such as [1], ['a'], ["true"]**)
 | ExpEmptyList
 | ExpVar of decl_name
-| ExpTuple of expr list
-| ExpFun of ??
-| ExpMatch of decl_expr * (match_pattern * decl_expr)
+| Exp_tuple of decl_expr list (** can be changed to [expr*expr*(expr list)] **)
+| Exp_function of case list
+| Exp_fun of pattern list * decl_expr
+| Exp_apply of decl_expr * decl_expr 
+| Exp_match of decl_expr * case list
+| Exp_try of decl_expr * case list
 | ExpIf of decl_expr * decl_expr * decl_expr 
-| ExpLet of decl_name * decl_expr (* *)
+| Exp_Let of rec_flag * value_binding list * decl_expr
 | ExpBinOp of binop * decl_expr * decl_expr
 
 let expint num = ExpInt num
