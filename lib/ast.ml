@@ -51,16 +51,6 @@ type rec_flag =
   | Nonrecursive
   | Recursive
 
-type value_binding =
-  { pat : pattern
-  ; expr : decl_expr
-  }
-
-type case =
-  { left : pattern
-  ; right : decl_expr
-  }
-
 type decl_expr =
   | Exp_constant of constant (** Expressions constant such as [1], ['a'], ["true"]**)
   | Exp_emptyList
@@ -75,6 +65,16 @@ type decl_expr =
   | Exp_let of rec_flag * value_binding list * decl_expr
   | Exp_binop of binop * decl_expr * decl_expr
 [@@deriving eq, show { with_path = false }]
+
+and value_binding =
+  { pat : pattern
+  ; expr : decl_expr
+  }
+
+and case =
+  { left : pattern
+  ; right : decl_expr
+  }
 
 (*
    Example of factorial ast
