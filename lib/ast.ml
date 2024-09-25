@@ -40,6 +40,10 @@ type rec_flag =
   | Nonrecursive
   | Recursive
 
+type closed_flag =
+ | Closed
+ | Open
+
 type decl_expr =
   | Exp_constant of constant (** Expressions constant such as [1], ['a'], ["true"]**)
   | Exp_emptyList
@@ -53,7 +57,8 @@ type decl_expr =
   | Exp_if of decl_expr * decl_expr * decl_expr option
   | Exp_let of rec_flag * value_binding list * decl_expr
   | Exp_binop of binop * decl_expr * decl_expr
-  | Exp_construct of decl_expr option
+  | Exp_construct of decl_expr option  (***)
+  | Exp_pvariant of decl_name * decl_expr option
 [@@deriving eq, show { with_path = false }]
 
 and value_binding =
@@ -75,6 +80,12 @@ type decl_type =
   | Type_list of decl_type
   | Type_tuple of decl_type list
   | Type_variant of (decl_name * decl_type) list
+  | Type_pvariant of row_field list * closed_flag * decl_name list option
+
+and row_field =
+  | Rtag of decl_name * bool * decl_type list
+  | Ringerit of decl_type
+
 [@@deriving eq, show { with_path = false }]
 
 (*
